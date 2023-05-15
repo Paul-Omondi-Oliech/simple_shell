@@ -16,7 +16,7 @@ void print_cd_1(vars_t *vars)
 /**
  * print_cd_2 - Prints error message when cd argument does not exist.
  * @vars: The parameter to included
- * Return: return nothing and print an a message.
+ * Return: return nothing and print a message.
  */
 void print_cd_2(vars_t *vars)
 {
