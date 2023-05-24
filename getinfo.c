@@ -2,7 +2,7 @@
 
 /**
  * clear_info - initializes info_t struct
- * @info: struct address
+ * @info: The struct address
  */
 void clear_info(info_t *info)
 {
@@ -14,7 +14,7 @@ void clear_info(info_t *info)
 
 /**
  * set_info - initializes info_t struct
- * @info: struct address
+ * @info: the struct address
  * @av: argument vector
  */
 void set_info(info_t *info, char **av)
@@ -44,8 +44,8 @@ void set_info(info_t *info, char **av)
 }
 
 /**
- * free_info - frees the info_t struct fields
- * @info: struct address
+ * free_info - frees info_t struct fields
+ * @info: the struct address
  * @all: true if it frees all fields
  */
 void free_info(info_t *info, int all)
