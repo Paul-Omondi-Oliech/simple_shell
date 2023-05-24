@@ -2,10 +2,10 @@
 
 /**
  * main - entry point
- * @ac: arguments count
- * @av: arguments vector
+ * @ac: arg count
+ * @av: arg vector
  *
- * Return: 0 on  success and 1 on error
+ * Return: 0 on success, 1 on error
  */
 int main(int ac, char **av)
 {
@@ -42,3 +42,4 @@ int main(int ac, char **av)
 	hsh(info, av);
 	return (EXIT_SUCCESS);
 }
+

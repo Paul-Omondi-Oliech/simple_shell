@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the current working environment
- * @info: Structure containing arguments used to maintain
- * constant function prototype.
- * Return: 0 on success
+ * _myenv - prints the current environment
+ * @info: Structure containig arguments used to maintain
+ *constant function prototype.
+ * Return: Always 0
  */
 int _myenv(info_t *info)
 {
@@ -13,11 +13,12 @@ int _myenv(info_t *info)
 }
 
 /**
- * _getenv - gets the value of an environment variable
- * @info: Structure containing potential arguments
- * used to maintain constant function prototype
- * @name: environment variable name
- * Return: the expected value
+ * _getenv - gets the value of an environ variable
+ * @info: Structure containingarguments used to maintain
+ * constant prototype
+ * @name: env var name
+ *
+ * Return: the value
  */
 char *_getenv(info_t *info, const char *name)
 {
@@ -35,10 +36,10 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv - Initializes a new environment variable,
- * or modifies an existing one
- * @info: Structure containing potential arguments
- * used to maintain constant function prototype.
+ * _mysetenv - Initialize a new environment variable,
+ * or modify an existing one
+ * @info: Structure containing arguments. Used to maintain
+ * constant function prototype.
  *  Return: 0 on success
  */
 int _mysetenv(info_t *info)
@@ -54,10 +55,10 @@ int _mysetenv(info_t *info)
 }
 
 /**
- * _myunsetenv - Removes an environment variable
- * @info: Structure containing potential arguments used to maintain
+ * _myunsetenv - Remove an environment variable
+ * @info: Structure containing arguments used to maintain
  * constant function prototype.
- * Return: Always 0
+ * Return: 0 on success
  */
 int _myunsetenv(info_t *info)
 {
@@ -75,7 +76,7 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list - populates environment linked list
+ * populate_env_list - populates env linked list
  * @info: Structure containing potential arguments used to maintain
  * constant function prototype.
  * Return: 0 on success

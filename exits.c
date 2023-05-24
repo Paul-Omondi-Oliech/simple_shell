@@ -2,64 +2,66 @@
 
 /**
  **_strncpy - copies a string
- *@dest: the destination to copy the string to
- *@src: Source string
- *@n: Amount of characters to be copied
+ *@dest: the destination string to be copied to
+ *@src: the source string
+ *@n: the amount of characters to be copied
  *Return: the concatenated string
  */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int j, k;
+	int i, j;
 	char *s = dest;
 
-	j = 0;
-	while (src[j] != '\0' && j < n - 1)
+	i = 0;
+	while (src[i] != '\0' && i < n - 1)
 	{
-		dest[j] = src[j];
-		j++;
+		dest[i] = src[i];
+		i++;
 	}
-	if (j < n)
+	if (i < n)
 	{
-		k = j;
+		j = i;
 		while (j < n)
 		{
-			dest[k] = '\0';
-			k++;
+			dest[j] = '\0';
+			j++;
 		}
 	}
 	return (s);
 }
+
 /**
  **_strncat - concatenates two strings
- *@dest: the first string(deststination)
- *@src: Second string(to be concatenated)
- *@n: Amount of bytes to be maximally used
+ *@dest: the first string
+ *@src: the second string
+ *@n: the amount of bytes to be maximally used
  *Return: the concatenated string
  */
 char *_strncat(char *dest, char *src, int n)
 {
-	int j, k;
+	int i, j;
 	char *s = dest;
 
+	i = 0;
 	j = 0;
-	k = 0;
-	while (dest[j] != '\0')
-		j++;
-	while (src[k] != '\0' && k < n)
+	while (dest[i] != '\0')
+		i++;
+	while (src[j] != '\0' && j < n)
 	{
-		dest[j] = src[k];
+		dest[i] = src[j];
+		i++;
 		j++;
-		k++;
 	}
-	if (k < n)
-		dest[j] = '\0';
+	if (j < n)
+		dest[i] = '\0';
 	return (s);
 }
+
 /**
- **_strchr - locates a character in the string
+ **_strchr - locates a character in a string
  *@s: the string to be parsed
- *@c: the character to be located
- *Return: (s), a pointer to the memory area s
+ *@c: the character to look for
+ *Return: (s) a pointer to the memory area s
  */
 char *_strchr(char *s, char c)
 {

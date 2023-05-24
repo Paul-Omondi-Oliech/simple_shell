@@ -2,41 +2,42 @@
 
 /**
  * _memset - fills memory with a constant byte
- * @s: a pointer to the memory area
- * @c: the byte to be filled with *s
- * @n: amount of bytes to be filled
- * Return: (s) a pointer to the memory area
+ * @s: the pointer to the memory area
+ * @b: the byte to fill *s with
+ * @n: the amount of bytes to be filled
+ * Return: (s) a pointer to the memory area s
  */
-char *_memset(char *s, char c, unsigned int n)
+char *_memset(char *s, char b, unsigned int n)
 {
-	unsigned int j;
+	unsigned int i;
 
-	for (j = 0; j < n; j++)
-		s[j] = c;
+	for (i = 0; i < n; i++)
+		s[i] = b;
 	return (s);
 }
 
 /**
  * ffree - frees a string of strings
- * @pp: the string of strings
+ * @pp: string of strings
  */
 void ffree(char **pp)
 {
-	char **m = pp;
+	char **a = pp;
 
 	if (!pp)
 		return;
 	while (*pp)
 		free(*pp++);
-	free(m);
+	free(a);
 }
 
 /**
- * _realloc - reallocates a block of memory to a file
- * @ptr: pointer to the previous block of memory allocated
- * @old_size: byte size of the previous block of memory
- * @new_size: byte size of the new block of memory
- * Return: pointer to the dealloccated block
+ * _realloc - reallocates a block of memory
+ * @ptr: pointer to previous malloc'ated block
+ * @old_size: byte size of previous block
+ * @new_size: byte size of new block
+ *
+ * Return: pointer to da ol'block nameen.
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -59,3 +60,4 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	free(ptr);
 	return (p);
 }
+

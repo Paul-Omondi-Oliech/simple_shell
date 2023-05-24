@@ -2,28 +2,30 @@
 
 /**
  * _strcpy - copies a string
- * @dest: the destination to copy to
+ * @dest: the destination
  * @src: the source
- * Return: pointer to the  destination
+ *
+ * Return: pointer to destination
  */
 char *_strcpy(char *dest, char *src)
 {
-	int j = 0;
+	int i = 0;
 
 	if (dest == src || src == 0)
 		return (dest);
-	while (src[j])
+	while (src[i])
 	{
-		dest[j] = src[j];
-		j++;
+		dest[i] = src[i];
+		i++;
 	}
-	dest[j] = 0;
+	dest[i] = 0;
 	return (dest);
 }
 
 /**
  * _strdup - duplicates a string
- * @str: the string to to be duplicated
+ * @str: the string to duplicate
+ *
  * Return: pointer to the duplicated string
  */
 char *_strdup(const char *str)
@@ -44,40 +46,42 @@ char *_strdup(const char *str)
 }
 
 /**
- * _puts - prints an inputed string
+ * _puts - prints an input string
  * @str: the string to be printed
- * Return: void
+ *
+ * Return: Nothing
  */
 void _puts(char *str)
 {
-	int j = 0;
+	int i = 0;
 
 	if (!str)
 		return;
-	while (str[j] != '\0')
+	while (str[i] != '\0')
 	{
-		_putchar(str[j]);
-		j++;
+		_putchar(str[i]);
+		i++;
 	}
 }
 
 /**
  * _putchar - writes the character c to stdout
- * @c: The character to be printed
- * Return: 1 (success) and
- * On error, -1 is returned and errno is set appropriately.
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c)
 {
-	static int j;
+	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || j >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, j);
-		j = 0;
+		write(1, buf, i);
+		i = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[j++] = c;
+		buf[i++] = c;
 	return (1);
 }

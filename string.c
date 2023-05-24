@@ -2,27 +2,28 @@
 
 /**
  * _strlen - returns the length of a string
- * @s: the string whose length is to be checked
- * Return: integer length of the string
+ * @s: the string whose length to check
+ *
+ * Return: integer length of string
  */
 int _strlen(char *s)
 {
-	int j = 0;
+	int i = 0;
 
 	if (!s)
 		return (0);
 
 	while (*s++)
-		j++;
-	return (j);
+		i++;
+	return (i);
 }
 
 /**
- * _strcmp - performs comparison between two strangs.
- * @s1: the first string
- * @s2: the second string
- * Return: a negative if s1 < s2 and
- * a positive if s1 > s2 or zero if s1 == s2
+ * _strcmp - performs lexicogarphic comparison of two strangs.
+ * @s1: the first strang
+ * @s2: the second strang
+ *
+ * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
 int _strcmp(char *s1, char *s2)
 {
@@ -40,15 +41,16 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * starts_with - checks if a pencil starts with a haystack
- * @haystack: string to be searched
- * @pencil: the substring to be found
- * Return: address of the next char of the haystack or NULL
+ * starts_with - checks if needle starts with haystack
+ * @haystack: string to search
+ * @needle: the substring to find
+ *
+ * Return: address of next char of haystack or NULL
  */
-char *starts_with(const char *haystack, const char *pencil)
+char *starts_with(const char *haystack, const char *needle)
 {
-	while (*pencil)
-		if (*pencil++ != *haystack++)
+	while (*needle)
+		if (*needle++ != *haystack++)
 			return (NULL);
 	return ((char *)haystack);
 }
@@ -57,7 +59,8 @@ char *starts_with(const char *haystack, const char *pencil)
  * _strcat - concatenates two strings
  * @dest: the destination buffer
  * @src: the source buffer
- * Return: a pointer to the destination buffer
+ *
+ * Return: pointer to destination buffer
  */
 char *_strcat(char *dest, char *src)
 {
