@@ -1,83 +1,115 @@
 #include "shell.h"
 
 /**
- * check_for_builtins - checks if the command is a builtin
- * @vars: variables
- * Return: pointer to the function or NULL
+ * _myhistory - displays the history list, one command by line, preceded
+ * with line numbers, starting at 0.
+ * @info: Structure containing arguments
+ * Used to maintain constant function prototype.
+ *  Return: 0 on success
  */
-void (*check_for_builtins(vars_t *vars))(vars_t *vars)
+int _myhistory(info_t *info)
 {
-	unsigned int j;
-	builtins_t check[] = {
-		{"exit", new_exit},
-		{"env", _env},
-		{"setenv", new_setenv},
-		{"unsetenv", new_unsetenv},
-		{"help", new_help},
-		{"cd", new_cd},
-		{"history", read_textfile},
-
-		{NULL, NULL}};
-
-	for (j = 0; check[j].f != NULL; j++)
-	{
-
-		if (_strcmpr(vars->array_tokens[0], check[j].name) == 0)
-			break;
-	}
-	if (check[j].f != NULL)
-		check[j].f(vars);
-	return (check[j].f);
+	print_list(info->history);
+	return (0);
 }
 
 /**
- * new_exit - exit program
- * @vars: variables
- * Return: nothing
+ * unset_alias - sets alias to string
+ * @info: parameter struct
+ * @str: the string alias
+ *
+ * Return: 0 on success and 1 on error
  */
-void new_exit(vars_t *vars)
+int unset_alias(info_t *info, char *str)
 {
+	char *p, c;
+	int ret;
 
-	int status;
+	p = _strchr(str, '=');
+	if (!p)
+		return (1);
+	c = *p;
+	*p = 0;
+	ret = delete_node_at_index(&(info->alias),
+		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+	*p = c;
+	return (ret);
+}
 
-	if (_strcmpr(vars->array_tokens[0], "exit") ==
-			0 &&
-		vars->array_tokens[1] != NULL)
+/**
+ * set_alias - sets alias to string
+ * @info: parameter struct
+ * @str: the string alias
+ *
+ * Return: 0 on success and 1 on error
+ */
+int set_alias(info_t *info, char *str)
+{
+	char *p;
 
+	p = _strchr(str, '=');
+	if (!p)
+		return (1);
+	if (!*++p)
+		return (unset_alias(info, str));
+
+	unset_alias(info, str);
+	return (add_node_end(&(info->alias), str, 0) == NULL);
+}
+
+/**
+ * print_alias - prints an alias string
+ * @node: the alias node
+ *
+ * Return: 0 on success and 1 on error
+ */
+int print_alias(list_t *node)
+{
+	char *p = NULL, *a = NULL;
+
+	if (node)
 	{
+		p = _strchr(node->str, '=');
+		for (a = node->str; a <= p; a++)
+		_putchar(*a);
+		_putchar('\'');
+		_puts(p + 1);
+		_puts("'\n");
+		return (0);
+	}
+	return (1);
+}
 
-		status = _atoi(vars->array_tokens[1]);
+/**
+ * _myalias - mimics the alias builtin (man alias)
+ * @info: Structure containing arguments
+ * Used to maintain constant function prototype.
+ *  Return: 0 on success
+ */
+int _myalias(info_t *info)
+{
+	int j = 0;
+	char *p = NULL;
+	list_t *node = NULL;
 
-		if (status == -1)
+	if (info->argc == 1)
+	{
+		node = info->alias;
+		while (node)
 		{
-			vars->status = 2;
-			prints_error_msg(vars, ": Illegal number: ");
-			print_message(vars->array_tokens[1]);
-			print_message("\n");
-			return;
+			print_alias(node);
+			node = node->next;
 		}
-		vars->status = status;
+		return (0);
 	}
-	free(vars->commands);
-	free(vars->array_tokens);
-	free_env(vars->env);
-	free(vars->buffer);
-	exit(vars->status);
-}
-
-/**
- * _env - prints the current environment
- * @vars: struct of variables
- * Return: nothing
- */
-void _env(vars_t *vars)
-{
-	unsigned int j;
-
-	for (j = 0; vars->env[j]; j++)
+	for (j = 1; info->argv[j]; j++)
 	{
-		_puts(vars->env[j]);
-		_puts("\n");
+		p = _strchr(info->argv[j], '=');
+		if (p)
+			set_alias(info, info->argv[j]);
+		else
+			print_alias(node_starts_with(info->alias, info->argv[j], '='));
 	}
-	vars->status = 0;
+
+	return (0);
 }
