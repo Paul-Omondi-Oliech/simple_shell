@@ -34,7 +34,7 @@ int _eputchar(char c)
 	if (c == BUF_FLUSH || j >= WRITE_BUF_SIZE)
 	{
 		write(2, buf, j);
-		i = 0;
+		j = 0;
 	}
 	if (c != BUF_FLUSH)
 		buf[j++] = c;
