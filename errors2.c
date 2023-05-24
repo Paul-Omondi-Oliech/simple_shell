@@ -8,17 +8,17 @@
  */
 int _erratoi(char *s)
 {
-	int i = 0;
+	int j = 0;
 	unsigned long int result = 0;
 
 	if (*s == '+')
 		s++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  s[i] != '\0'; i++)
+	for (j = 0;  s[j] != '\0'; j++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[j] >= '0' && s[j] <= '9')
 		{
 			result *= 10;
-			result += (s[i] - '0');
+			result += (s[j] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -47,7 +47,7 @@ void print_error(info_t *info, char *estr)
 }
 
 /**
- * print_d - function prints a decimal (integer) number (base 10)
+ * print_d - the function that prints a decimal (integer) number (base 10)
  * @input: the input
  * @fd: the filedescriptor to write to
  *
@@ -56,7 +56,7 @@ void print_error(info_t *info, char *estr)
 int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
-	int i, count = 0;
+	int j, count = 0;
 	unsigned int _abs_, current;
 
 	if (fd == STDERR_FILENO)
@@ -70,14 +70,14 @@ int print_d(int input, int fd)
 	else
 		_abs_ = input;
 	current = _abs_;
-	for (i = 1000000000; i > 1; i /= 10)
+	for (j = 1000000000; j > 1; j /= 10)
 	{
-		if (_abs_ / i)
+		if (_abs_ / j)
 		{
-			__putchar('0' + current / i);
+			__putchar('0' + current / j);
 			count++;
 		}
-		current %= i;
+		current %= j;
 	}
 	__putchar('0' + current);
 	count++;
@@ -86,11 +86,10 @@ int print_d(int input, int fd)
 }
 
 /**
- * convert_number - converter function, a clone of itoa
+ * convert_number - converter function, a clone of the itoa
  * @num: number
  * @base: base
  * @flags: argument flags
- *
  * Return: string
  */
 char *convert_number(long int num, int base, int flags)
@@ -123,18 +122,18 @@ char *convert_number(long int num, int base, int flags)
 
 /**
  * remove_comments - function replaces first instance of '#' with '\0'
- * @buf: address of the string to modify
+ * @buf: address of the string to be modified
  *
  * Return: Always 0;
  */
 void remove_comments(char *buf)
 {
-	int i;
+	int j;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (j = 0; buf[j] != '\0'; j++)
+		if (buf[j] == '#' && (!j || buf[j - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buf[j] = '\0';
 			break;
 		}
 }

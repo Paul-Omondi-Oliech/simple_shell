@@ -4,7 +4,7 @@
  * _myenv - prints the current environment
  * @info: Structure containig arguments used to maintain
  *constant function prototype.
- * Return: Always 0
+ * Return: 0 on success
  */
 int _myenv(info_t *info)
 {
@@ -14,7 +14,7 @@ int _myenv(info_t *info)
 
 /**
  * _getenv - gets the value of an environ variable
- * @info: Structure containingarguments used to maintain
+ * @info: Structure containingarguments, used to maintain
  * constant prototype
  * @name: env var name
  *
@@ -38,7 +38,7 @@ char *_getenv(info_t *info, const char *name)
 /**
  * _mysetenv - Initialize a new environment variable,
  * or modify an existing one
- * @info: Structure containing arguments. Used to maintain
+ * @info: Structure containing arguments, used to maintain
  * constant function prototype.
  *  Return: 0 on success
  */
